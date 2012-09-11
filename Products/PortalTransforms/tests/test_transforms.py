@@ -187,6 +187,10 @@ class SafeHtmlTransformsTest(ATSiteTestCase):
         data = self.pt.convertTo(target_mimetype='text/x-html-safe', orig=orig)
         self.assertEqual(data.getData(), orig)
 
+    def test_unicode_entityref_data(self):
+        orig = '<img src="" alt="Fond d&#8217;&eacute;cran 4 saisons (mini)" />'
+        data = self.pt.convertTo(target_mimetype='text/x-html-safe', orig=orig)
+        self.assertEqual(data.getData(), orig)
 
 TRANSFORMS_TESTINFO = (
     ('Products.PortalTransforms.transforms.pdf_to_html',
